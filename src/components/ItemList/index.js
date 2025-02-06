@@ -32,7 +32,7 @@ const ItemList = props => {
                   >
                     -
                   </button>
-                  <p className="count">{item.noOfDish || 0}</p>
+                  <p className="count">{item.noOfDish}</p>
                   <button
                     type="button"
                     className="in-de-button"

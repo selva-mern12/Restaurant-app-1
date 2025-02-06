@@ -100,10 +100,8 @@ class Restaurant extends Component {
     const dish = categories.categoryDishes[dishIndex]
 
     if (action === 'decrease') {
-      if (dish.noOfDish > 1) {
+      if (dish.noOfDish > 0) {
         dish.noOfDish -= 1
-      } else {
-        dish.noOfDish = 0
         this.setState(prevState => ({
           order: prevState.order.filter(item => item !== dishName),
         }))
@@ -111,11 +109,10 @@ class Restaurant extends Component {
     } else {
       dish.noOfDish += 1
       this.setState(prevState => ({
-        order: prevState.order.includes(dishName)
-          ? [...prevState.order]
-          : [...prevState.order, dishName],
+        order: [...prevState.order, dishName],
       }))
     }
+
     this.setState({tableMenuList: updatedMenuList})
   }
 
@@ -125,8 +122,14 @@ class Restaurant extends Component {
       tableMenu,
       restaurantPageStatus,
       tableMenuList,
-      order,
     } = this.state
+
+    const cartCount = tableMenuList.reduce(
+      (total, category) =>
+        total +
+        category.categoryDishes.reduce((sum, dish) => sum + dish.noOfDish, 0),
+      0,
+    )
     const itemList = tableMenuList?.find(
       item => item.menuCategory === tableMenu,
     )?.categoryDishes
@@ -140,7 +143,7 @@ class Restaurant extends Component {
             <p className="order-container">
               My Orders
               <AiOutlineShoppingCart size={35} />{' '}
-              <span className="order-count">{order.length}</span>
+              <span className="order-count">{cartCount}</span>
             </p>
           </div>
           <TableMenuList
