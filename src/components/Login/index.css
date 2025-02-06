@@ -1,0 +1,235 @@
+.login-bg {
+  background: url('https://i.pinimg.com/736x/0f/64/8a/0f648a264b8179e13a7c6ff540da4e4f.jpg');
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0px;
+}
+.login-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #00000080;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-heading {
+  color: #fff;
+  font-size: 35px;
+  font-family: Lobster;
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-shadow: 0px 0px 10px #000;
+}
+.img-login-container {
+  background-color: #ffffff20;
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
+  border-radius: 15px;
+}
+
+.india-img {
+  height: 60vh;
+  width: 400px;
+  background-color: #ffffff50;
+  border-radius: 15px 0px 0px 15px;
+}
+.form-container {
+  height: 60vh;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px #000;
+}
+@media (max-width: 1000px) {
+  .login-bg {
+    background-image: url('https://i.pinimg.com/736x/30/a4/8e/30a48ef8361f861db68d28b6707cf415.jpg');
+  }
+  .img-login-container {
+    height: 40vh;
+    width: 70vw;
+  }
+  .form-container {
+    height: 40vh;
+    width: 70vw;
+    background-color: #00000050;
+  }
+  .india-img {
+    display: none;
+  }
+}
+
+.please-login {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+}
+.label-element {
+  font-family: serif;
+  font-size: 20px;
+  color: #e5ff00;
+  text-shadow: 0px 0px 10px #0800ff;
+  margin-bottom: 7px;
+}
+.input-element {
+  background-color: #00000050;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+  height: 35px;
+  width: 300px;
+  border: #fff 1px solid;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  background-color: darkorchid;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 15px;
+  border: transparent 1px solid;
+  transition: all 0.3s ease-in-out;
+  margin: 0px 20px;
+}
+.login-button:hover {
+  background-color: rgb(36, 36, 194);
+  border: #fff 1px solid;
+}
+.input-password-container {
+  display: flex;
+  flex-direction: row;
+}
+.password {
+  background-color: transparent;
+  border: none;
+  height: 35px;
+  width: 250px;
+  outline: none;
+}
+
+.password-button {
+  background-color: #ffffff50;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password {
+  color: #fff;
+  font-family: Roboto;
+}
+.password-button svg path {
+  stroke: #fff;
+}
+.input-element:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.password:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.input-element,
+.password:focus {
+  background-color: transparent;
+}
+.error-msg {
+  color: #f44848;
+}
+.tag-line {
+  font-family: 'Pacifico', cursive;
+  color: azure;
+  font-size: 25px;
+  margin-top: 15px;
+  text-shadow: 0px 0px 10px #eae683;
+  animation: tada 10s ease-in-out infinite;
+}
+
+@keyframes tada {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1) rotate(-1deg);
+  }
+  20% {
+    transform: scale(1.1) rotate(1deg);
+  }
+  30% {
+    transform: scale(1.1) rotate(-1deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(1deg);
+  }
+  50% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1) rotate(-1deg);
+  }
+  70% {
+    transform: scale(1.1) rotate(1deg);
+  }
+  80% {
+    transform: scale(1.1) rotate(-1deg);
+  }
+  90% {
+    transform: scale(1.1) rotate(1deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.small-device {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .login-page {
+    display: none;
+  }
+  .small-device {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000050;
+    color: #fff;
+    text-align: center;
+  }
+}
+.small-device-heade {
+  font-size: xx-large;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 15px;
+  border: 1px solid #fff;
+}

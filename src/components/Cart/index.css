@@ -1,0 +1,150 @@
+.cart-bg-container {
+  background-image: url('https://i.postimg.cc/GhJJHj22/wmremove-transformed.jpg');
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #00000060;
+  height: 90vh;
+}
+.cart-heading {
+  font-family: Roboto;
+  font-size: 50px;
+  color: #fffef5;
+  margin: 25px 0px;
+}
+.cart-full-container {
+  height: 70vh;
+  width: 70vw;
+  background-color: #ffffff50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+}
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+.remove-all {
+  align-self: flex-end;
+  position: sticky;
+  background-color: #9d3939;
+  color: rgb(255, 255, 255);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-shadow: 0px 0px 5px #9d3939;
+  border: transparent 1px solid;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.remove-all:hover {
+  border: #fffef5 1px solid;
+  background-color: rgb(145, 138, 47);
+}
+.cart-list {
+  flex-grow: 1;
+  list-style-type: none;
+  height: 60vh;
+  overflow: auto;
+  margin: 0px;
+  padding: 0px;
+}
+.carts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00000050;
+  backdrop-filter: blur(5px);
+  margin: 15px 40px;
+  padding: 10px 5px 10px 80px;
+  border-radius: 8px;
+  font-family: Roboto;
+  color: #ffffff;
+  box-shadow: inset 0px 0px 5px #ffffff;
+}
+
+.dish-details {
+  width: 40%;
+}
+.increase-decrease-container {
+  width: 15%;
+}
+.cart-dish-name {
+  font-size: 23px;
+  color: #ffffff;
+}
+.cart-dish-description {
+  font-size: 14px;
+  margin: 10px 0px;
+}
+
+.cart-customization {
+  color: #00ffff;
+}
+.cart-calories {
+  color: #ffa500;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+}
+.close-button {
+  background-color: transparent;
+  border: none;
+  align-self: flex-start;
+  width: 30px;
+  cursor: pointer;
+}
+.close-icon {
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+@media (max-width: 769px) {
+  .cart-bg-container {
+    background-image: url('https://img.freepik.com/free-photo/easter-egg-shopping-spree_23-2151945841.jpg?t=st=1738656073~exp=1738659673~hmac=6a7746aa3b74124322b1236b4662fe16136d49b58db6ff18b44deccddaf26ae6&w=720');
+    background-position: center;
+  }
+  .carts {
+    padding-left: 20px;
+  }
+  .cart-dish-name {
+    font-size: 18px;
+  }
+  .cart-dish-description {
+    font-size: 12px;
+  }
+  .cart-calories {
+    font-size: 15px;
+  }
+  .cart-customization {
+    font-size: 10px;
+  }
+  .item-img {
+    height: 100px;
+    width: 100px;
+  }
+}
+empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.empty-cart-image {
+  height: 45vh;
+  width: 40vh;
+}

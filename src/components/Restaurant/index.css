@@ -1,4 +1,5 @@
 .heading {
+  background-color: #ff7f7f;
   display: flex;
   justify-content: space-between;
   align-items: center;

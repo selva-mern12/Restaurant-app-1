@@ -1,7 +1,9 @@
 import {Component} from 'react'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+import {Redirect} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import TableMenuList from '../TableMenuList'
 import ItemList from '../ItemList'
+import Header from '../Header'
 
 import './index.css'
 
@@ -18,7 +20,7 @@ class Restaurant extends Component {
     tableMenu: '',
     restaurantPageStatus: pageStatus.initial,
     tableMenuList: [],
-    order: [],
+    restaurantName: '',
   }
 
   componentDidMount() {
@@ -57,7 +59,7 @@ class Restaurant extends Component {
             dishAvailability: dish.dish_Availability,
             dishType: dish.dish_Type,
             nextUrl: dish.nexturl,
-            noOfDish: 0,
+            quantity: 0,
             addonCat: dish.addonCat.map(addOnCat => ({
               addonCategory: addOnCat.addon_category,
               addonCategory_id: addOnCat.addon_category_id,
@@ -83,6 +85,7 @@ class Restaurant extends Component {
         tableMenu: restaurantUpdatedData.tableMenuList[0].menuCategory,
         restaurantPageStatus: pageStatus.success,
         tableMenuList: restaurantUpdatedData.tableMenuList,
+        restaurantName: restaurantUpdatedData.restaurantName,
       })
     } else {
       this.setState({restaurantPageStatus: pageStatus.failure})
@@ -91,69 +94,65 @@ class Restaurant extends Component {
 
   selectTableMenu = table => this.setState({tableMenu: table})
 
-  updateOrder = (action, dishIndex, dishName) => {
-    const {tableMenu, tableMenuList} = this.state
-    const updatedMenuList = [...tableMenuList]
-    const categories = updatedMenuList.find(
-      item => item.menuCategory === tableMenu,
-    )
-    const dish = categories.categoryDishes[dishIndex]
-
-    if (action === 'decrease') {
-      if (dish.noOfDish > 0) {
-        dish.noOfDish -= 1
-        this.setState(prevState => ({
-          order: prevState.order.filter(item => item !== dishName),
-        }))
-      }
-    } else {
-      dish.noOfDish += 1
-      this.setState(prevState => ({
-        order: [...prevState.order, dishName],
-      }))
-    }
-
-    this.setState({tableMenuList: updatedMenuList})
+  updateOrder = (action, id) => {
+    this.setState(prevState => ({
+      tableMenuList: prevState.tableMenuList.map(table => ({
+        ...table,
+        categoryDishes: table.categoryDishes.map(item =>
+          item.dishId === id
+            ? {
+                ...item,
+                quantity:
+                  action === 'increase'
+                    ? item.quantity + 1
+                    : Math.max(0, item.quantity - 1), // Prevents negative quantity
+              }
+            : item,
+        ),
+      })),
+    }))
   }
 
   render() {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken === undefined) {
+      return <Redirect to="/login" />
+    }
     const {
+      restaurantName,
       restaurantDetails,
       tableMenu,
       restaurantPageStatus,
       tableMenuList,
     } = this.state
+    console.log(tableMenuList)
 
-    const cartCount = tableMenuList.reduce(
-      (total, category) =>
-        total +
-        category.categoryDishes.reduce((sum, dish) => sum + dish.noOfDish, 0),
-      0,
-    )
+    localStorage.setItem('shop_name', restaurantName)
+
+    // const cartCount = tableMenuList.reduce(
+    //   (total, category) =>
+    //     total +
+    //     category.categoryDishes.reduce((sum, dish) => sum + dish.noOfDish, 0),
+    //   0,
+    // )
     const itemList = tableMenuList?.find(
       item => item.menuCategory === tableMenu,
     )?.categoryDishes
     return (
       <div>
         <div className="fixed-container">
-          <div className="heading">
-            <h1 className="restaurant-name">
-              {restaurantDetails.restaurantName}
-            </h1>
-            <p className="order-container">
-              My Orders
-              <AiOutlineShoppingCart size={35} />{' '}
-              <span className="order-count">{cartCount}</span>
-            </p>
-          </div>
+          <Header />
           <TableMenuList
             tableList={restaurantDetails.tableMenuList}
             tableMenu={tableMenu}
             selectTableMenu={this.selectTableMenu}
-            restaurantPageStatus={restaurantPageStatus}
           />
         </div>
-        <ItemList menuList={itemList} updateOrder={this.updateOrder} />
+        <ItemList
+          menuList={itemList}
+          updateOrder={this.updateOrder}
+          restaurantPageStatus={restaurantPageStatus}
+        />
       </div>
     )
   }
