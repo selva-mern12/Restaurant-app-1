@@ -83,15 +83,17 @@ const ItemList = props => {
                                 +
                               </button>
                             </div>{' '}
-                            <button
-                              type="button"
-                              className="login-button"
-                              disabled={item.quantity === 0}
-                              data-testid={`addToCart-${item.dishId}`}
-                              onClick={() => addToCart(item)}
-                            >
-                              ADD TO CART
-                            </button>
+                            {item.quantity !== 0 && (
+                              <button
+                                type="button"
+                                className="login-button"
+                                disabled={item.quantity === 0}
+                                data-testid={`addToCart-${item.dishId}`}
+                                onClick={() => addToCart(item)}
+                              >
+                                ADD TO CART
+                              </button>
+                            )}
                           </div>
                         ) : (
                           <p className="not-available">Not available</p>

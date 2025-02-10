@@ -69,6 +69,7 @@ class App extends Component {
     }))
 
   removeAllCartItems = () => {
+    console.log('remove-all')
     this.setState({cartList: []})
   }
 
